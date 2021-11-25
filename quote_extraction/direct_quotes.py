@@ -15,4 +15,7 @@ def replace(text: str, replacement: str = 'QUOTE') -> str:
     Example:
         extract('They said, "This is my quote."', 'QUOTE') -> 'They said QUOTE.'
     """
-    raise NotImplementedError
+    regex = r"\B[‘\'\"](.*?)[’\'\"\"]+(?=$|\s)\B|\B[’\'\"](.*[^\'\s])+(?=$|\s)"
+    result = re.sub(regex, replacement, text, 0, re.MULTILINE)
+    
+    return result
