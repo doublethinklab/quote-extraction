@@ -1,21 +1,27 @@
 import re
+from typing import List
 
 
-def replace(text: str, replacement: str = 'QUOTE') -> str:
-    """Replaces direct quotes in text with a placeholder token.
+class QuoteExtractor:
 
-    Args:
-        text: String. A contiguous sequence of text from which you want to
-            extract direct quotes.
-        replacement: String. The placeholder to put in place of direct quotes.
+    def __init__(self, regex=None):
+        if not regex:
+            self.regex=r"\B[‘\'\"](.*?)[’\'\"\"]+(?=$|\s)\B|\B[’\'\"](.*[^\'\s])+(?=$|\s)"
+        else:
+            self.regex = regex
 
-    Returns:
-        String: original text with direct quotes replaced by `replacement`.
-
-    Example:
-        extract('They said, "This is my quote."', 'QUOTE') -> 'They said QUOTE.'
-    """
-    regex = r"\B[‘\'\"](.*?)[’\'\"\"]+(?=$|\s)\B|\B[’\'\"](.*[^\'\s])+(?=$|\s)"
-    result = re.sub(regex, replacement, text, 0, re.MULTILINE)
+    def extract_quotes(self, text: str) -> List[str]:
+        matches = re.finditer(self.regex, text, re.MULTILINE)
+        quotes = []
+        for matchNum, match in enumerate(matches, start=1):
+            quotes.append(match.group())
     
-    return result
+        return quotes
+            
+    
+    def replace_quotes(self, text: str, replacement: str) -> str:
+    	# original text, with quotes replaced
+        return re.sub(self.regex, replacement, text, 0, re.MULTILINE)
+
+
+
