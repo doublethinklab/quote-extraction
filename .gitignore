@@ -110,3 +110,6 @@ ENV/
 
 # Visual Studio
 .vs/
+
+# old code
+direct_quotes_backup.py

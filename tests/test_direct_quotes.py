@@ -1,5 +1,4 @@
 import unittest
-
 from quote_extraction.direct_quotes import replace
 
 
@@ -8,7 +7,7 @@ class TestReplace(unittest.TestCase):
     def test_sentence_end_period_within_quote(self):
         text = 'They said, "This is my quote."'
         result = replace(text)
-        expected = 'They said, QUOTE.'
+        expected = 'They said, QUOTE'
         self.assertEqual(expected, result)
 
     def test_double_quote_char(self):
@@ -38,7 +37,7 @@ class TestReplace(unittest.TestCase):
                'How about that?"'
         result = replace(text)
         expected = 'very strong speech from Jacqui Lambie, bluntly opposing ' \
-                   'One Nation\'s vaccine mandate QUOTE bill: QUOTE.'
+                   'One Nation\'s vaccine mandate QUOTE bill: QUOTE'
         self.assertEqual(expected, result)
 
     def test_quote_within_quote_different_quote_chars(self):
