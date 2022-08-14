@@ -18,6 +18,6 @@ setuptools.setup(
     description='Reusable module for quote extraction.',
     url=f'https://github.com/doublethinklab/quote-extraction.git#{version}',
     packages=setuptools.find_packages(),
-    python_requires='>=3.9.5',
+    python_requires='>=3.8',
     # install_requires=required
 )
